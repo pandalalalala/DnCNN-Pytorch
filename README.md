@@ -14,7 +14,7 @@ This is a PyTorch implementation of the TIP2017 paper [*Beyond a Gaussian Denois
 
 ### 2. Train DnCNN-S (DnCNN for super-resolution)
 ```
-CUDA_VISIBLE_DEVICE=2 python train_AB.py --mode S --outf logs/S64_256 --num_of_layers 20 --batchSize 162 --A train_S_A --B train_S_B --val_A val_S_A --val_B val_S_B --preprocess True
+CUDA_VISIBLE_DEVICES=2 python train_AB.py --mode S --outf logs/S64_256 --num_of_layers 20 --batchSize 162 --A train_S_A --B train_S_B --val_A val_S_A --val_B val_S_B --preprocess True
 ```
 **NOTE**
 * If you've already built the training and validation dataset (i.e. train.h5 & val.h5 files), set *preprocess* to be False.
@@ -23,7 +23,7 @@ CUDA_VISIBLE_DEVICE=2 python train_AB.py --mode S --outf logs/S64_256 --num_of_l
 
 ### 3. Train DnCNN-N (DnCNN with blind noise condition)
 ```
-CUDA_VISIBLE_DEVICE=2 python train_AB.py --mode N --outf logs/D64 --num_of_layers 20 --batchSize 300 --A train_N_A --B train_N_B --val_A val_N_A --val_B val_N_B --preprocess True
+CUDA_VISIBLE_DEVICES=2 python train_AB.py --mode N --outf logs/D64 --num_of_layers 20 --batchSize 300 --A train_N_A --B train_N_B --val_A val_N_A --val_B val_N_B --preprocess True
 
 ```
 **NOTE**
