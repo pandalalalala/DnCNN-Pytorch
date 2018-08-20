@@ -112,7 +112,7 @@ def main():
         Img_B = utils.make_grid(img_B_train.data, nrow=8, normalize=True, scale_each=True)
         Irecon = utils.make_grid(out_train.data, nrow=8, normalize=True, scale_each=True)
         writer.add_image('clean image', Img_A, epoch)
-        writer.add_image('noisy image', Img_B, epoch)
+        writer.add_image('input image', Img_B, epoch)
         writer.add_image('reconstructed image', Irecon, epoch)
         # save model
         torch.save(model.state_dict(), os.path.join(opt.outf, 'net.pth'))
