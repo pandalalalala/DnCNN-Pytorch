@@ -1,7 +1,7 @@
 # DnCNN-PyTorch
 [![AUR](https://img.shields.io/aur/license/yaourt.svg?style=plastic)](LICENSE)
 
-This is a PyTorch implementation of the TIP2017 paper [*Beyond a Gaussian Denoiser: Residual Learning of Deep CNN for Image Denoising*](http://ieeexplore.ieee.org/document/7839189/). The author's [MATLAB implementation is here](https://github.com/cszn/DnCNN).
+This is a PyTorch implementation of the TIP2017 paper [*Beyond a Gaussian Denoiser: Residual Learning of Deep CNN for Image Denoising*](http://ieeexplore.ieee.org/document/7839189/). The author's [MATLAB implementation is here](https://github.com/cszn/DnCNN). The [initial Pytorch implementation on denoising DnCNN is here] (https://github.com/SaoYan/DnCNN-PyTorch.git)
 
 ## How to run
 
@@ -12,32 +12,24 @@ This is a PyTorch implementation of the TIP2017 paper [*Beyond a Gaussian Denois
 * [HDF5 for Python](http://www.h5py.org/)
 * [tensorboardX](https://github.com/lanpa/tensorboard-pytorch) (TensorBoard for PyTorch)
 
-### 2. Train DnCNN-S (DnCNN with known noise level)
+### 2. Train DnCNN-S (DnCNN for super-resolution)
 ```
-python train.py \
-  --preprocess True \
-  --num_of_layers 17 \
-  --mode S \
-  --noiseL 25 \
-  --val_noiseL 25
+CUDA_VISIBLE_DEVICE=2 python train_AB.py --mode S --outf logs/S64_256 --num_of_layers 20 --batchSize 162 --A train_S_A --B train_S_B --val_A val_S_A --val_B val_S_B --preprocess True
 ```
 **NOTE**
 * If you've already built the training and validation dataset (i.e. train.h5 & val.h5 files), set *preprocess* to be False.
 * According to the paper, DnCNN-S has 17 layers.
 * *noiseL* is used for training and *val_noiseL* is used for validation. They should be set to the same value for unbiased validation. You can set whatever noise level you need.
 
-### 3. Train DnCNN-B (DnCNN with blind noise level)
+### 3. Train DnCNN-N (DnCNN with blind noise condition)
 ```
-python train.py \
-  --preprocess True \
-  --num_of_layers 20 \
-  --mode B \
-  --val_noiseL 25
+CUDA_VISIBLE_DEVICE=2 python train_AB.py --mode N --outf logs/D64 --num_of_layers 20 --batchSize 300 --A train_N_A --B train_N_B --val_A val_N_A --val_B val_N_B --preprocess True
+
 ```
 **NOTE**
 * If you've already built the training and validation dataset (i.e. train.h5 & val.h5 files), set *preprocess* to be False.
 * According to the paper, DnCNN-B has 20 layers.
-* *noiseL* is ingnored when training DnCNN-B. You can set *val_noiseL* to whatever you need.
+* 
 
 ### 4. Test
 ```
