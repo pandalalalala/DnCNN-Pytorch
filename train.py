@@ -65,6 +65,7 @@ def main():
             model.zero_grad()
             optimizer.zero_grad()
             img_train = data
+            print(img_train.size())
             if opt.mode == 'S':
                 noise = torch.FloatTensor(img_train.size()).normal_(mean=0, std=opt.noiseL/255.)
             if opt.mode == 'B':

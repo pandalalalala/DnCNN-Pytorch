@@ -70,6 +70,7 @@ def main():
             img_B_train = data[:,1,:,:]
 
             difference = img_B_train - img_A_train
+            print(difference.size())
 
             img_A_train, img_B_train = Variable(img_A_train.cuda()), Variable(img_B_train.cuda())
             difference = Variable(difference.cuda())
